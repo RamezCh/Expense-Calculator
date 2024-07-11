@@ -25,6 +25,21 @@
           </div>
         </div>
       </header>
+      <section class="filters">
+        <div class="filter-group">
+          <label for="filterType">Filter by:</label>
+          <select id="filterType">
+            <option value="all">All</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="filterDate">Date:</label>
+          <input type="date" id="filterDate" />
+        </div>
+        <button id="applyFilter">Apply Filter</button>
+      </section>
       <div class="row">
         <section class="add-transaction">
           <h3>Add Transaction</h3>

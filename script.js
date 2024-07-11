@@ -163,5 +163,36 @@ const updateBalance = () => {
   expenseEl.textContent = formatter.format(expense);
 };
 
-// Event listener for form submission
+// Selection of filter elements
+const filterType = document.getElementById('filterType');
+const filterDate = document.getElementById('filterDate');
+const applyFilterBtn = document.getElementById('applyFilter');
+
+// Function to apply filters
+const applyFilters = () => {
+  const type = filterType.value;
+  const date = filterDate.value;
+
+  // Filter transactions based on type and date
+  let filteredTransactions = transactions;
+  if (type !== 'all') {
+    filteredTransactions = transactions.filter(transaction =>
+      type === 'income' ? transaction.amount > 0 : transaction.amount < 0
+    );
+  }
+  if (date) {
+    filteredTransactions = filteredTransactions.filter(
+      transaction => transaction.date === date
+    );
+  }
+
+  // Update transaction list with filtered results
+  list.innerHTML = '';
+  filteredTransactions.forEach(transaction => {
+    displayTransaction(transaction);
+  });
+};
+
+// Event listeners
 form.addEventListener('submit', addTransaction);
+applyFilterBtn.addEventListener('click', applyFilters);

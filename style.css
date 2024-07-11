@@ -378,3 +378,66 @@ button.delete:hover {
     max-height: 350px;
   }
 }
+
+/* Filters */
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center align filters horizontally */
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #fff; /* Background color for filters section */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-group {
+  margin-right: 20px;
+}
+
+.filters label {
+  font-size: 1rem;
+  margin-right: 10px;
+  color: var(--text-color);
+}
+
+.filters select,
+.filters input[type='date'] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  width: 150px; /* Adjust width as needed */
+}
+
+.filters button {
+  padding: 10px 20px;
+  background-color: var(--main-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.filters button:hover {
+  background-color: rgba(52, 152, 219, 0.8);
+}
+
+/* Adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+  .filters {
+    flex-wrap: wrap; /* Allow filters to wrap on smaller screens */
+    justify-content: space-around; /* Adjust alignment for smaller screens */
+  }
+
+  .filter-group {
+    margin-bottom: 10px; /* Add space between filter groups on smaller screens */
+  }
+
+  .filters select,
+  .filters input[type='date'] {
+    width: 100%; /* Full width for select and input on smaller screens */
+  }
+}
