@@ -1,5 +1,7 @@
+/* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
+/* Variables */
 :root {
   --bg-color: #f6f8fa;
   --text-color: #1d1f27;
@@ -8,12 +10,14 @@
   --main-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Reset */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
+/* Body */
 body {
   padding: 2rem;
   font-family: 'Poppins', sans-serif;
@@ -25,6 +29,7 @@ body {
   height: 100vh;
 }
 
+/* Headings */
 h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -36,8 +41,9 @@ ul {
   margin-bottom: 0.5rem;
 }
 
+/* Main Content */
 main {
-  max-width: 800px;
+  max-width: 1400px;
   width: 100%;
   background-color: var(--main-bg-color);
   padding: 1rem;
@@ -45,6 +51,7 @@ main {
   border-radius: 8px;
 }
 
+/* Header */
 header {
   background-color: var(--main-color);
   color: #fff;
@@ -86,6 +93,7 @@ header {
   font-weight: bold;
 }
 
+/* Form */
 form {
   display: flex;
   flex-wrap: wrap;
@@ -127,6 +135,7 @@ form div:nth-child(n + 3) {
   flex-basis: calc(50% - 5px);
 }
 
+/* Lists */
 ul {
   list-style-type: none;
 }
@@ -143,6 +152,7 @@ ul li:hover {
   background: rgba(0, 0, 0, 0.1);
 }
 
+/* Transaction Item */
 .name {
   flex: 1;
 }
@@ -195,36 +205,13 @@ ul li:hover .action {
   cursor: pointer;
 }
 
-#status {
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
-
-/* Row layout */
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.add-transaction,
-.display-transaction {
-  flex: 1;
-  min-width: 300px;
-}
-
-/* Add transaction form styles */
-.add-transaction h3,
-.display-transaction h3 {
-  text-align: center;
-  color: var(--main-color);
-}
-
+/* Transaction List */
 #transaction-list {
   list-style: none;
   padding: 0;
+  max-height: 350px;
+  overflow-y: auto;
 }
-
 #transaction-list li {
   background-color: #fafafa;
   border-left: 5px solid var(--main-color);
@@ -245,8 +232,7 @@ ul li:hover .action {
   text-align: right;
 }
 
-/* Edit popup */
-
+/* Popup Overlay */
 .overlay {
   display: none;
   position: fixed;
@@ -258,6 +244,7 @@ ul li:hover .action {
   z-index: 1000;
 }
 
+/* Popup Container */
 .popup {
   display: none;
   position: fixed;
@@ -327,7 +314,7 @@ ul li:hover .action {
   color: darkred;
 }
 
-/* Edit Delete Btn */
+/* Edit and Delete Buttons */
 button.edit,
 button.delete {
   background-color: transparent;
@@ -356,4 +343,38 @@ button.delete {
 
 button.delete:hover {
   background-color: darkred;
+}
+
+/* Responsive Layout */
+@media screen and (max-width: 768px) {
+  main {
+    padding: 0.5rem;
+  }
+
+  header {
+    margin-bottom: 10px;
+  }
+
+  .header-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .header-summary {
+    flex-direction: column;
+  }
+
+  .summary-item {
+    margin: 5px 0;
+    text-align: center;
+  }
+
+  form div:nth-child(-n + 2),
+  form div:nth-child(n + 3) {
+    flex-basis: 100%;
+  }
+
+  #transaction-list {
+    max-height: 350px;
+  }
 }
