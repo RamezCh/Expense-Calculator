@@ -8,6 +8,7 @@
   </head>
   <body>
     <main>
+      <!-- Expense Tracker-->
       <header>
         <h1 class="header-title">Expense Tracker</h1>
         <div class="header-summary">
@@ -25,6 +26,7 @@
           </div>
         </div>
       </header>
+      <!-- Filter -->
       <section class="filters">
         <div class="filter-group">
           <label for="filterType">Filter by:</label>
@@ -40,7 +42,9 @@
         </div>
         <button id="applyFilter">Apply Filter</button>
       </section>
+      <!-- Transactions -->
       <div class="row">
+        <!-- Add Transactions -->
         <section class="add-transaction">
           <h3>Add Transaction</h3>
           <form id="transactionForm">
@@ -66,6 +70,7 @@
             <button type="submit">Submit</button>
           </form>
         </section>
+        <!-- Display Transactions -->
         <section class="display-transaction">
           <h3>Transactions</h3>
           <ul id="transaction-list"></ul>

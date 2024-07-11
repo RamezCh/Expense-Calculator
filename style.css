@@ -5,7 +5,7 @@
 :root {
   --bg-color: #f6f8fa;
   --text-color: #1d1f27;
-  --main-color: #3498db; /* Trustworthy blue */
+  --main-color: #3498db;
   --main-bg-color: #ffffff;
   --main-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
@@ -383,10 +383,10 @@ button.delete:hover {
 .filters {
   display: flex;
   align-items: center;
-  justify-content: center; /* Center align filters horizontally */
+  justify-content: center;
   margin-top: 20px;
   padding: 10px;
-  background-color: #fff; /* Background color for filters section */
+  background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -407,7 +407,7 @@ button.delete:hover {
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 0.9rem;
-  width: 150px; /* Adjust width as needed */
+  width: 150px;
 }
 
 .filters button {
@@ -428,16 +428,16 @@ button.delete:hover {
 /* Adjustments for smaller screens */
 @media screen and (max-width: 768px) {
   .filters {
-    flex-wrap: wrap; /* Allow filters to wrap on smaller screens */
-    justify-content: space-around; /* Adjust alignment for smaller screens */
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
 
   .filter-group {
-    margin-bottom: 10px; /* Add space between filter groups on smaller screens */
+    margin-bottom: 10px;
   }
 
   .filters select,
   .filters input[type='date'] {
-    width: 100%; /* Full width for select and input on smaller screens */
+    width: 100%;
   }
 }
