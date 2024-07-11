@@ -58,7 +58,23 @@ const addTransaction = e => {
 
 const deleteTransaction = id => {};
 
-const displayTransaction = transaction => {};
+const displayTransaction = transaction => {
+  const sign = transaction.amount > 0 ? '+' : '-';
+  const type = transaction.amount > 0 ? 'income' : 'expense';
+
+  const transactionEl = document.createElement('li');
+  transactionEl.classList.add(type);
+  transactionEl.innerHTML = `
+    <span>${transaction.name}</span>
+    <span>${sign}${formatter.format(Math.abs(transaction.amount))}</span>
+    <span>${transaction.date}</span>
+    <button class="delete" onclick="deleteTransaction(${
+      transaction.id
+    })">X</button>
+  `;
+
+  list.appendChild(transactionEl);
+};
 
 const updateBalance = () => {
   balanceEl.textContent = formatter.format(balance);
