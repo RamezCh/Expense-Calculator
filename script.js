@@ -10,6 +10,9 @@ const amountInput = document.getElementById('amount');
 const dateInput = document.getElementById('date');
 const list = document.getElementById('transaction-list');
 const status = document.getElementById('status');
+const overlay = document.getElementById('overlay');
+const popup = document.getElementById('popup');
+const editForm = document.getElementById('editForm');
 
 // Transaction History
 let transactions = [];
@@ -32,8 +35,9 @@ const addTransaction = e => {
   if (!transaction) return; // Exit if transaction creation fails
 
   transactions.push(transaction);
+  transactions.sort((a, b) => new Date(a.date) - new Date(b.date)); // Sort transactions by date
   updateBalance();
-  displayTransaction(transaction);
+  updateTransactionList();
   form.reset();
 };
 
@@ -86,14 +90,62 @@ const displayTransaction = transaction => {
     <span>${transaction.name}</span>
     <span>${sign}${formatter.format(Math.abs(transaction.amount))}</span>
     <span>${transaction.date}</span>
-    <button class="delete" data-id="${transaction.id}">X</button>
+    <button class="edit" data-id="${transaction.id}">Edit</button>
+    <button class="delete" data-id="${transaction.id}">Delete</button>
   `;
 
   // Attach delete event listener
   const deleteBtn = transactionEl.querySelector('.delete');
   deleteBtn.addEventListener('click', () => deleteTransaction(transaction.id));
 
+  // Attach edit event listener
+  const editBtn = transactionEl.querySelector('.edit');
+  editBtn.addEventListener('click', () => editTransaction(transaction.id));
+
   list.appendChild(transactionEl);
+};
+
+// Function to edit a transaction
+const editTransaction = id => {
+  const transaction = transactions.find(transaction => transaction.id === id);
+
+  // Populate edit form with transaction details
+  document.getElementById('editName').value = transaction.name;
+  document.getElementById('editAmount').value = Math.abs(transaction.amount);
+  document.getElementById('editDate').value = transaction.date;
+
+  // Show overlay and popup
+  overlay.style.display = 'block';
+  popup.style.display = 'block';
+
+  // Handle form submission
+  editForm.onsubmit = e => {
+    e.preventDefault();
+
+    // Update transaction details
+    transaction.name = document.getElementById('editName').value;
+    transaction.amount = parseFloat(
+      document.getElementById('editAmount').value
+    );
+    transaction.date = document.getElementById('editDate').value;
+
+    // Close popup
+    overlay.style.display = 'none';
+    popup.style.display = 'none';
+
+    // Sort transactions by date after editing
+    transactions.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    // Update UI
+    updateTransactionList();
+    updateBalance();
+  };
+
+  // Close popup when close button is clicked
+  document.getElementById('closePopup').onclick = () => {
+    overlay.style.display = 'none';
+    popup.style.display = 'none';
+  };
 };
 
 // Function to update balance, income, and expense displays

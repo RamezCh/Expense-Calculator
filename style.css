@@ -244,3 +244,116 @@ ul li:hover .action {
   flex: 1;
   text-align: right;
 }
+
+/* Edit popup */
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  width: 400px;
+  height: auto;
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.popup h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.popup form {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup form label {
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.popup form input,
+.popup form button {
+  margin-bottom: 16px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.popup form button[type='submit'] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.popup form button[type='submit']:hover {
+  background-color: #0056b3;
+}
+
+.popup #closePopup {
+  background-color: transparent;
+  border: none;
+  color: red;
+  cursor: pointer;
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  font-size: 1.2rem;
+}
+
+.popup #closePopup:hover {
+  color: darkred;
+}
+
+/* Edit Delete Btn */
+button.edit,
+button.delete {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+button.edit {
+  background-color: var(--main-color);
+}
+
+button.edit:hover {
+  background-color: rgba(52, 152, 219, 0.8);
+}
+
+button.delete {
+  background-color: red;
+}
+
+button.delete:hover {
+  background-color: darkred;
+}
