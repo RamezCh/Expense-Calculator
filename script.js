@@ -90,7 +90,9 @@ const displayTransaction = transaction => {
     <span>${transaction.name}</span>
     <span>${sign}${formatter.format(Math.abs(transaction.amount))}</span>
     <span>${transaction.date}</span>
-    <button class="edit" data-id="${transaction.id}">Edit</button>
+    <button style="margin-left:3%;" class="edit" data-id="${
+      transaction.id
+    }">Edit</button>
     <button class="delete" data-id="${transaction.id}">Delete</button>
   `;
 
