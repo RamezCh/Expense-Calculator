@@ -56,7 +56,11 @@ const addTransaction = e => {
   form.reset();
 };
 
-const deleteTransaction = id => {};
+const deleteTransaction = id => {
+  transactions = transactions.filter(transaction => transaction.id !== id);
+  updateBalance();
+  displayTransaction();
+};
 
 const displayTransaction = transaction => {
   const sign = transaction.amount > 0 ? '+' : '-';
