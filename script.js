@@ -13,7 +13,7 @@ const amountInput = document.getElementById('amount');
 const dateInput = document.getElementById('date');
 
 // Display Transaction Elements
-const list = document.getElementById('transactionList');
+const list = document.getElementById('transaction-list');
 const status = document.getElementById('status');
 
 // Transaction History Elements
