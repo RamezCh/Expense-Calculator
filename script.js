@@ -27,20 +27,6 @@ const formatter = new Intl.NumberFormat('en-US', {
   signDisplay: 'never',
 });
 
-// Function to add a transaction
-const addTransaction = e => {
-  e.preventDefault();
-
-  const transaction = createTransaction();
-  if (!transaction) return; // Exit if transaction creation fails
-
-  transactions.push(transaction);
-  transactions.sort((a, b) => new Date(a.date) - new Date(b.date)); // Sort transactions by date
-  updateBalance();
-  updateTransactionList();
-  form.reset();
-};
-
 // Function to create a transaction object
 const createTransaction = () => {
   const name = nameInput.value.trim();
@@ -59,13 +45,6 @@ const createTransaction = () => {
     amount,
     date,
   };
-};
-
-// Function to delete a transaction by ID
-const deleteTransaction = id => {
-  transactions = transactions.filter(transaction => transaction.id !== id);
-  updateBalance();
-  updateTransactionList(); // Update the entire transaction list after deletion
 };
 
 // Function to update the transaction list display
@@ -105,6 +84,42 @@ const displayTransaction = transaction => {
   editBtn.addEventListener('click', () => editTransaction(transaction.id));
 
   list.appendChild(transactionEl);
+};
+
+// Function to add a transaction
+const addTransaction = e => {
+  e.preventDefault();
+
+  const transaction = createTransaction();
+  if (!transaction) return; // Exit if transaction creation fails
+
+  transactions.push(transaction);
+  transactions.sort((a, b) => new Date(a.date) - new Date(b.date)); // Sort transactions by date
+  updateBalance();
+  updateTransactionList();
+  form.reset();
+};
+
+// Function to delete a transaction by ID
+const deleteTransaction = id => {
+  transactions = transactions.filter(transaction => transaction.id !== id);
+  updateBalance();
+  updateTransactionList(); // Update the entire transaction list after deletion
+};
+
+// Function to update balance, income, and expense displays
+const updateBalance = () => {
+  balance = transactions.reduce((acc, curr) => acc + curr.amount, 0);
+  income = transactions
+    .filter(transaction => transaction.amount > 0)
+    .reduce((acc, curr) => acc + curr.amount, 0);
+  expense = transactions
+    .filter(transaction => transaction.amount < 0)
+    .reduce((acc, curr) => acc + Math.abs(curr.amount), 0);
+
+  balanceEl.textContent = formatter.format(balance);
+  incomeEl.textContent = formatter.format(income);
+  expenseEl.textContent = formatter.format(expense);
 };
 
 // Function to edit a transaction
@@ -148,21 +163,6 @@ const editTransaction = id => {
     overlay.style.display = 'none';
     popup.style.display = 'none';
   };
-};
-
-// Function to update balance, income, and expense displays
-const updateBalance = () => {
-  balance = transactions.reduce((acc, curr) => acc + curr.amount, 0);
-  income = transactions
-    .filter(transaction => transaction.amount > 0)
-    .reduce((acc, curr) => acc + curr.amount, 0);
-  expense = transactions
-    .filter(transaction => transaction.amount < 0)
-    .reduce((acc, curr) => acc + Math.abs(curr.amount), 0);
-
-  balanceEl.textContent = formatter.format(balance);
-  incomeEl.textContent = formatter.format(income);
-  expenseEl.textContent = formatter.format(expense);
 };
 
 // Selection of filter elements
