@@ -22,4 +22,16 @@ const formatter = new Intl.NumberFormat('en-US', {
   signDisplay: 'always',
 });
 
-// Checkbox logic
+// Functions
+
+const addTransaction = e => {
+  e.preventDefault();
+};
+
+const deleteTransaction = id => {};
+
+const displayTransaction = transaction => {};
+
+const updateBalance = () => {};
+// Event listeners
+form.addEventListener('submit', addTransaction);
