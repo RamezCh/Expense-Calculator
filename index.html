@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expense Tracker</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <main>
@@ -70,13 +71,21 @@
             <button type="submit">Submit</button>
           </form>
         </section>
+
         <!-- Display Transactions -->
         <section class="display-transaction">
           <h3>Transactions</h3>
           <ul id="transaction-list"></ul>
           <div id="status"></div>
         </section>
+
+        <!-- Chart Visualization -->
+        <section id="chartSection" class="hidden">
+          <h3>Expense Breakdown</h3>
+          <canvas id="expenseChart"></canvas>
+        </section>
       </div>
+
       <!-- Pop up -->
       <div id="overlay" class="overlay"></div>
       <div id="popup" class="popup">

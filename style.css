@@ -450,3 +450,15 @@ button.delete:hover {
     width: 100%;
   }
 }
+
+.hidden {
+  display: none;
+}
+
+#expenseChart {
+  max-width: 80%;
+  min-width: 60%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}

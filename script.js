@@ -107,7 +107,56 @@ const deleteTransaction = id => {
   updateTransactionList(); // Update the entire transaction list after deletion
 };
 
-// Function to update balance, income, and expense displays
+// Initialize the chart
+const ctx = document.getElementById('expenseChart').getContext('2d');
+let expenseChart;
+
+const initializeChart = () => {
+  if (expenseChart) {
+    expenseChart.destroy();
+  }
+
+  const labels = transactions.map(transaction => transaction.name);
+  const data = transactions.map(transaction => Math.abs(transaction.amount));
+  const backgroundColors = transactions.map(transaction =>
+    transaction.amount > 0 ? '#4CAF50' : '#FF5252'
+  );
+
+  expenseChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Amount',
+          data: data,
+          backgroundColor: backgroundColors,
+          borderColor: backgroundColors,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              const label = context.label || '';
+              const value = context.raw || 0;
+              return `${label}: ${formatter.format(value)}`;
+            },
+          },
+        },
+      },
+    },
+  });
+};
+
+// Function to update the balance, income, and expense displays and the chart
 const updateBalance = () => {
   balance = transactions.reduce((acc, curr) => acc + curr.amount, 0);
   income = transactions
@@ -120,6 +169,15 @@ const updateBalance = () => {
   balanceEl.textContent = formatter.format(balance);
   incomeEl.textContent = formatter.format(income);
   expenseEl.textContent = formatter.format(expense);
+
+  // Show or hide the chart section
+  const chartSection = document.getElementById('chartSection');
+  if (transactions.length > 0) {
+    chartSection.classList.remove('hidden');
+    initializeChart();
+  } else {
+    chartSection.classList.add('hidden');
+  }
 };
 
 // Function to edit a transaction
